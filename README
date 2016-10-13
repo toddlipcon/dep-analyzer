@@ -1,0 +1,27 @@
+Overview
+===============
+dep-analyzer is a Clang-based tool for dumping dependency info from a C/C++ module.
+
+Requirements
+===============
+
+This has currently only been tested against clang 3.9.
+Clang APIs tend to change between versions, so this is unlikely to work
+on earlier versions of clang.
+
+Building
+=========
+
+Run 'cmake .', followed by 'make', in this directory.
+
+Running
+=========
+
+In the target source directory, run:
+
+$ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
+$ /path/to/dep-analyzer -class=.*ClassName -p . path/to/foo.cc \
+    -extra-arg=-isystem -extra-arg=/path/to/clang/3.9.0/include
+
+(it's not clear why the clang include directory has to be explicitly included,
+but it probably does)
